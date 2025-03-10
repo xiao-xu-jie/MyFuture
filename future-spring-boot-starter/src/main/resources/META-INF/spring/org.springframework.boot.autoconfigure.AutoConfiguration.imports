@@ -1,0 +1,2 @@
+com.xujie.future.redis.FutureRedisAutoConfiguration
+com.xujie.future.rocketMQ.FutureRocketmqAutoConfiguration
