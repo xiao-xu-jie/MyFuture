@@ -6,13 +6,14 @@
 
     <groupId>com.xujie</groupId>
     <artifactId>MyFuture</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
     <description>
         主要用来完成SpringCloud Alibaba等微服务的集成
     </description>
     <modules>
         <module>future-spring-boot-starter</module>
         <module>future-spring-boot-autoconfigure</module>
+        <module>future-contract</module>
     </modules>
 
     <packaging>pom</packaging>
@@ -123,7 +124,24 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
+    <!--内部搭建的maven仓库 ：使用分发管理将本项目打包成jar包，直接上传到指定的服务器上-->
+    <distributionManagement>
+        <!--        正式版本-->
+        <repository>
+            <!--    nexus服务器中用户名： 在settings.xml中<Server> 的id-->
+            <!--   <id>jade-release</id>-->
+            <id>mymaven</id>
+            <name>mymaven</name>
+            <url>http://183.131.51.137:8081/repository/maven-releases</url>
+        </repository>
+        <!--        快照-->
+        <snapshotRepository>
+            <!--            <id>jade-snapshot</id>-->
+            <id>mymaven</id>
+            <name>mymaven</name>
+            <url>http://183.131.51.137:8081/repository/maven-snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
     <dependencies>
 
         <dependency>
