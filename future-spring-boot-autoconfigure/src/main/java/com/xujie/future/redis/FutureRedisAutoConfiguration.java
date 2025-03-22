@@ -16,6 +16,7 @@ import org.springframework.data.redis.core.StringRedisTemplate;
  * @author Xujie
  * @since 2025/3/9 16:08
  **/
+@ConditionalOnClass(RedisTemplate.class)
 @ConditionalOnProperty(prefix = "spring.data.redis", value = "host")
 @Configuration
 @Import({RedisCacheConfig.class})

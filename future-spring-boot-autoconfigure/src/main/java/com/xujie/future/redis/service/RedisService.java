@@ -1,6 +1,6 @@
 package com.xujie.future.redis.service;
 
-import com.alibaba.fastjson.JSON;
+import cn.hutool.json.JSONUtil;
 import com.xujie.future.redis.util.RedisKeyUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -1007,7 +1007,7 @@ public class RedisService {
             return (String) value;
         }
 
-        return JSON.toJSONString(value);
+        return JSONUtil.toJsonStr(value);
     }
 
     private String[] parseStrValues(Object... values) {

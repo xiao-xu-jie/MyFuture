@@ -14,7 +14,7 @@ import org.springframework.validation.beanvalidation.MethodValidationPostProcess
  * @since 2025/3/22 19:34
  **/
 @Configuration
-@ConditionalOnClass({HibernateValidator.class})
+@ConditionalOnClass({org.springframework.validation.Validator.class})
 public class ValidatorAutoConfiguration {
 
     @Bean
