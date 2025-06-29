@@ -1,7 +1,7 @@
-package com.xujie.future.exception;
+package com.xujie.future.contract.exception;
 
 
-import com.xujie.future.enums.ErrorCode;
+import com.xujie.future.contract.enums.ErrorCode;
 
 /**
  * 自定义异常类

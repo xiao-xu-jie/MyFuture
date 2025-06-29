@@ -15,7 +15,7 @@ import org.springframework.validation.beanvalidation.MethodValidationPostProcess
  **/
 @Configuration
 @ConditionalOnClass({org.springframework.validation.Validator.class})
-public class ValidatorAutoConfiguration {
+public class FutureValidatorAutoConfiguration {
 
     @Bean
     public Validator validator() {
@@ -32,7 +32,7 @@ public class ValidatorAutoConfiguration {
      * 开启快速返回
      * 如果参数校验有异常，直接抛异常，不会进入到 controller，使用全局异常拦截进行拦截
      */
-    @Bean
+    @Bean("futureMethodValidationPostProcessor")
     public MethodValidationPostProcessor methodValidationPostProcessor() {
         MethodValidationPostProcessor postProcessor =
                 new MethodValidationPostProcessor();

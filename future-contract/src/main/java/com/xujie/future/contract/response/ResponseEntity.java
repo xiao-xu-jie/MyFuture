@@ -1,12 +1,12 @@
-package com.xujie.future.response;
+package com.xujie.future.contract.response;
 
-import com.xujie.future.enums.ErrorCode;
-import com.xujie.future.enums.HttpStatusEnum;
+
+import com.xujie.future.contract.enums.ErrorCode;
+import com.xujie.future.contract.enums.HttpStatusEnum;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.io.Serial;
 import java.io.Serializable;
 
 /**
@@ -17,8 +17,7 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ResponseResult<T> implements Serializable {
-    @Serial
+public class ResponseEntity<T> implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
@@ -49,15 +48,15 @@ public class ResponseResult<T> implements Serializable {
      * @param message 返回信息
      * @param data    返回数据
      * @param <T>     泛型
-     * @return {@link ResponseResult<T>}
+     * @return {@link ResponseEntity <T>}
      */
-    private static <T> ResponseResult<T> response(Integer code, Boolean status, String message, T data) {
-        ResponseResult<T> responseResult = new ResponseResult<>();
-        responseResult.setCode(code);
-        responseResult.setStatus(status);
-        responseResult.setMessage(message);
-        responseResult.setData(data);
-        return responseResult;
+    private static <T> ResponseEntity<T> response(Integer code, Boolean status, String message, T data) {
+        ResponseEntity<T> responseEntity = new ResponseEntity<>();
+        responseEntity.setCode(code);
+        responseEntity.setStatus(status);
+        responseEntity.setMessage(message);
+        responseEntity.setData(data);
+        return responseEntity;
     }
 
     /**
@@ -67,23 +66,23 @@ public class ResponseResult<T> implements Serializable {
      * @param status  状态
      * @param message 返回信息
      * @param <T>     泛型
-     * @return {@link ResponseResult<T>}
+     * @return {@link ResponseEntity <T>}
      */
-    private static <T> ResponseResult<T> response(Integer code, Boolean status, String message) {
-        ResponseResult<T> responseResult = new ResponseResult<>();
-        responseResult.setCode(code);
-        responseResult.setStatus(status);
-        responseResult.setMessage(message);
-        return responseResult;
+    private static <T> ResponseEntity<T> response(Integer code, Boolean status, String message) {
+        ResponseEntity<T> responseEntity = new ResponseEntity<>();
+        responseEntity.setCode(code);
+        responseEntity.setStatus(status);
+        responseEntity.setMessage(message);
+        return responseEntity;
     }
 
     /**
      * 成功返回（无参）
      *
      * @param <T> 泛型
-     * @return {@link ResponseResult<T>}
+     * @return {@link ResponseEntity <T>}
      */
-    public static <T> ResponseResult<T> success() {
+    public static <T> ResponseEntity<T> success() {
         return response(HttpStatusEnum.SUCCESS.getCode(), true, HttpStatusEnum.SUCCESS.getMessage(), null);
     }
 
@@ -92,9 +91,9 @@ public class ResponseResult<T> implements Serializable {
      *
      * @param httpResponseEnum 枚举参数
      * @param <T>              泛型
-     * @return {@link ResponseResult<T>}
+     * @return {@link ResponseEntity <T>}
      */
-    public static <T> ResponseResult<T> success(HttpStatusEnum httpResponseEnum) {
+    public static <T> ResponseEntity<T> success(HttpStatusEnum httpResponseEnum) {
         return response(httpResponseEnum.getCode(), true, httpResponseEnum.getMessage());
     }
 
@@ -104,9 +103,9 @@ public class ResponseResult<T> implements Serializable {
      * @param code    状态码
      * @param message 返回信息
      * @param <T>     泛型
-     * @return {@link ResponseResult<T>}
+     * @return {@link ResponseEntity <T>}
      */
-    public static <T> ResponseResult<T> success(Integer code, String message) {
+    public static <T> ResponseEntity<T> success(Integer code, String message) {
         return response(code, true, message);
     }
 
@@ -116,9 +115,9 @@ public class ResponseResult<T> implements Serializable {
      * @param message 返回信息
      * @param data    数据
      * @param <T>     泛型
-     * @return {@link ResponseResult<T>}
+     * @return {@link ResponseEntity <T>}
      */
-    public static <T> ResponseResult<T> success(String message, T data) {
+    public static <T> ResponseEntity<T> success(String message, T data) {
         return response(HttpStatusEnum.SUCCESS.getCode(), true, message, data);
     }
 
@@ -129,9 +128,9 @@ public class ResponseResult<T> implements Serializable {
      * @param message 返回信息
      * @param data    数据
      * @param <T>     泛型
-     * @return {@link ResponseResult<T>}
+     * @return {@link ResponseEntity <T>}
      */
-    public static <T> ResponseResult<T> success(Integer code, String message, T data) {
+    public static <T> ResponseEntity<T> success(Integer code, String message, T data) {
         return response(code, true, message, data);
     }
 
@@ -140,9 +139,9 @@ public class ResponseResult<T> implements Serializable {
      *
      * @param data 数据
      * @param <T>  泛型
-     * @return {@link ResponseResult<T>}
+     * @return {@link ResponseEntity <T>}
      */
-    public static <T> ResponseResult<T> success(T data) {
+    public static <T> ResponseEntity<T> success(T data) {
         return response(HttpStatusEnum.SUCCESS.getCode(), true, HttpStatusEnum.SUCCESS.getMessage(), data);
     }
 
@@ -151,9 +150,9 @@ public class ResponseResult<T> implements Serializable {
      *
      * @param message 返回信息
      * @param <T>     泛型
-     * @return {@link ResponseResult<T>}
+     * @return {@link ResponseEntity <T>}
      */
-    public static <T> ResponseResult<T> success(String message) {
+    public static <T> ResponseEntity<T> message(String message) {
         return response(HttpStatusEnum.SUCCESS.getCode(), true, message, null);
     }
 
@@ -161,9 +160,9 @@ public class ResponseResult<T> implements Serializable {
      * 失败返回（无参）
      *
      * @param <T> 泛型
-     * @return {@link ResponseResult<T>}
+     * @return {@link ResponseEntity <T>}
      */
-    public static <T> ResponseResult<T> fail() {
+    public static <T> ResponseEntity<T> fail() {
         return response(HttpStatusEnum.ERROR.getCode(), false, HttpStatusEnum.ERROR.getMessage(), null);
     }
 
@@ -172,9 +171,9 @@ public class ResponseResult<T> implements Serializable {
      *
      * @param httpResponseEnum 枚举
      * @param <T>              泛型
-     * @return {@link ResponseResult<T>}
+     * @return {@link ResponseEntity <T>}
      */
-    public static <T> ResponseResult<T> fail(HttpStatusEnum httpResponseEnum) {
+    public static <T> ResponseEntity<T> fail(HttpStatusEnum httpResponseEnum) {
         return response(httpResponseEnum.getCode(), false, httpResponseEnum.getMessage());
     }
 
@@ -184,9 +183,9 @@ public class ResponseResult<T> implements Serializable {
      * @param code    状态码
      * @param message 返回信息
      * @param <T>     泛型
-     * @return {@link ResponseResult<T>}
+     * @return {@link ResponseEntity <T>}
      */
-    public static <T> ResponseResult<T> fail(Integer code, String message) {
+    public static <T> ResponseEntity<T> fail(Integer code, String message) {
         return response(code, false, message);
     }
 
@@ -196,9 +195,9 @@ public class ResponseResult<T> implements Serializable {
      * @param message 返回信息
      * @param data    数据
      * @param <T>     泛型
-     * @return {@link ResponseResult<T>}
+     * @return {@link ResponseEntity <T>}
      */
-    public static <T> ResponseResult<T> fail(String message, T data) {
+    public static <T> ResponseEntity<T> fail(String message, T data) {
         return response(HttpStatusEnum.ERROR.getCode(), false, message, data);
     }
 
@@ -209,9 +208,9 @@ public class ResponseResult<T> implements Serializable {
      * @param message 返回消息
      * @param data    数据
      * @param <T>     泛型
-     * @return {@link ResponseResult<T>}
+     * @return {@link ResponseEntity <T>}
      */
-    public static <T> ResponseResult<T> fail(Integer code, String message, T data) {
+    public static <T> ResponseEntity<T> fail(Integer code, String message, T data) {
         return response(code, false, message, data);
     }
 
@@ -220,9 +219,9 @@ public class ResponseResult<T> implements Serializable {
      *
      * @param data 数据
      * @param <T>  泛型
-     * @return {@link ResponseResult<T>}
+     * @return {@link ResponseEntity <T>}
      */
-    public static <T> ResponseResult<T> fail(T data) {
+    public static <T> ResponseEntity<T> fail(T data) {
         return response(HttpStatusEnum.ERROR.getCode(), false, HttpStatusEnum.ERROR.getMessage(), data);
     }
 
@@ -231,9 +230,9 @@ public class ResponseResult<T> implements Serializable {
      *
      * @param message 返回信息
      * @param <T>     泛型
-     * @return {@link ResponseResult<T>}
+     * @return {@link ResponseEntity <T>}
      */
-    public static <T> ResponseResult<T> fail(String message) {
+    public static <T> ResponseEntity<T> fail(String message) {
         return response(HttpStatusEnum.ERROR.getCode(), false, message, null);
     }
 
@@ -242,10 +241,14 @@ public class ResponseResult<T> implements Serializable {
      *
      * @param errorCode 错误码
      * @param message   返回信息
-     * @return {@link ResponseResult<T>}
+     * @return {@link ResponseEntity <T>}
      */
-    public static <T> ResponseResult<T> fail(ErrorCode errorCode, String message) {
+    public static <T> ResponseEntity<T> fail(ErrorCode errorCode, String message) {
 
         return response(errorCode.getCode(), false, message);
+    }
+
+    public Boolean isSuccess() {
+        return this.status;
     }
 }

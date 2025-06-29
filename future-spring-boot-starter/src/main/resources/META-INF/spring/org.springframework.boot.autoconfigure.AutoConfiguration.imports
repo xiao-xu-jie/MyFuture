@@ -1,3 +1,3 @@
 com.xujie.future.redis.FutureRedisAutoConfiguration
 com.xujie.future.mybatis.FutureMybatisAutoConfiguration
-com.xujie.future.validator.ValidatorAutoConfiguration
+com.xujie.future.validator.FutureValidatorAutoConfiguration

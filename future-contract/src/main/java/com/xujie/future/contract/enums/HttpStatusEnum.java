@@ -1,4 +1,4 @@
-package com.xujie.future.enums;
+package com.xujie.future.contract.enums;
 
 import lombok.Getter;
 
