@@ -39,3 +39,4 @@ build/
 /.idea/
 /target/
 **/.flattened-pom.xml
+/.idea/
