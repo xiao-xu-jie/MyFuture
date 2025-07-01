@@ -2,17 +2,21 @@ package com.xujie.future.contract.exception;
 
 
 import com.xujie.future.contract.enums.ErrorCode;
+import lombok.Getter;
 
 /**
  * 自定义异常类
  *
  * @author Xujie
  */
+@Getter
 public class BusinessException extends RuntimeException {
 
+    // 获取错误码
     // 错误码
     private final int code;
 
+    // 获取错误码信息
     // 错误码信息
     private final String description;
 
@@ -24,7 +28,7 @@ public class BusinessException extends RuntimeException {
     }
 
     public BusinessException(ErrorCode errorCode, String description) {
-        super(errorCode.getMessage());
+        super(description);
         this.code = errorCode.getCode();
         this.description = description;
     }
@@ -35,13 +39,11 @@ public class BusinessException extends RuntimeException {
         this.description = errorCode.getDescription();
     }
 
-    // 获取错误码
-    public int getCode() {
-        return code;
+    public BusinessException(String message) {
+        super(message);
+        this.code = ErrorCode.FAIL.getCode();
+        this.description = ErrorCode.FAIL.getDescription();
     }
 
-    // 获取错误码信息
-    public String getDescription() {
-        return description;
-    }
+
 }
