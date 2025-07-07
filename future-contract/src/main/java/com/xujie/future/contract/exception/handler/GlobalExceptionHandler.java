@@ -2,6 +2,7 @@ package com.xujie.future.contract.exception.handler;
 
 import com.xujie.future.contract.exception.BusinessException;
 import com.xujie.future.contract.response.ResponseEntity;
+import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -19,7 +20,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(BusinessException.class)
     public ResponseEntity<String> businessException(BusinessException e) {
         log.error("businessException:{}", e.getMessage(), e);
-        return ResponseEntity.fail(e.getCode(), e.getDescription());
+        return ResponseEntity.fail(e.getCode(), e.getMessage());
     }
 
     // 处理系统异常
@@ -27,5 +28,10 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> runtimeException(BusinessException e) {
         log.error("runtimeException:{}", e.getMessage(), e);
         return ResponseEntity.fail(e.getMessage());
+    }
+
+    @PostConstruct
+    public void init() {
+        log.info("全局异常拦截器加载成功！");
     }
 }
