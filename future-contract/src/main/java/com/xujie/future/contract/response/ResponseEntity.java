@@ -22,6 +22,8 @@ public class ResponseEntity<T> implements Serializable {
 
     /**
      * 状态码
+     *
+     * @mock 200
      */
     private Integer code;
 
